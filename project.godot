@@ -14,7 +14,7 @@ config/name="godot-4-roguelike-tutorial"
 run/main_scene="res://scene/main/main_screen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/low_processor_mode=true
-config/icon="res://icon.svg"
+config/icon="res://resource/hammer_wrench.png"
 
 [display]
 
