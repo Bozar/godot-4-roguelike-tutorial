@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 run/low_processor_mode=true
 config/icon="res://resource/hammer_wrench.png"
 
+[autoload]
+
+SpriteFactory="*res://autoload/sprite_factory.gd"
+
 [display]
 
 window/size/viewport_width=800
