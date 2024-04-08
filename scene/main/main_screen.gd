@@ -2,8 +2,6 @@ class_name MainScreen
 extends Node2D
 
 
-const PC_TAG: StringName = &"pc"
-
 const MOVE_LEFT: StringName = &"move_left"
 const MOVE_RIGHT: StringName = &"move_right"
 const MOVE_UP: StringName = &"move_up"
@@ -35,12 +33,12 @@ func _create_pc() -> void:
 
     new_pc.position = ConvertCoord.get_position(new_position)
     new_pc.modulate = Palette.get_color({}, MainTag.ACTOR, true)
-    new_pc.add_to_group(PC_TAG)
+    new_pc.add_to_group(SubTag.PC)
     add_child(new_pc)
 
 
 func _move_pc(direction: StringName) -> void:
-    var pc: Sprite2D = get_tree().get_first_node_in_group(PC_TAG)
+    var pc: Sprite2D = get_tree().get_first_node_in_group(SubTag.PC)
     var coord: Vector2i = ConvertCoord.get_coord(pc)
 
     match direction:
