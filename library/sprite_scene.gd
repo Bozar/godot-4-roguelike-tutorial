@@ -7,6 +7,11 @@ const SPRITE_SCENES: Dictionary = {
 
     # Actor
     SubTag.PC: preload("res://sprite/pc.tscn"),
+
+    # Indicator
+    SubTag.INDICATOR_TOP: preload("res://sprite/indicator_top.tscn"),
+    SubTag.INDICATOR_BOTTOM: preload("res://sprite/indicator_bottom.tscn"),
+    SubTag.INDICATOR_LEFT: preload("res://sprite/indicator_left.tscn"),
 }
 
 
