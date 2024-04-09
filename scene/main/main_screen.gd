@@ -6,11 +6,7 @@ func _ready() -> void:
     _connect_signals(NodeReference.SIGNAL_CONNECTIONS)
     RenderingServer.set_default_clear_color(Palette.get_color({},
             MainTag.BACKGROUND, true))
-    _create_pc()
-
-
-func _create_pc() -> void:
-    SpriteFactory.create_actor(SubTag.PC, Vector2i(0, 0), true)
+    $InitWorld.create_world()
 
 
 func _connect_signals(signal_connections: Dictionary) -> void:

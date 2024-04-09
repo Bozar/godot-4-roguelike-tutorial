@@ -2,6 +2,9 @@ class_name SpriteScene
 
 
 const SPRITE_SCENES: Dictionary = {
+    # Ground
+    SubTag.DUNGEON_FLOOR: preload("res://sprite/dungeon_floor.tscn"),
+
     # Actor
     SubTag.PC: preload("res://sprite/pc.tscn"),
 }
