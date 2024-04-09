@@ -16,5 +16,6 @@ static func create(main_tag: StringName, sub_tag: StringName, coord: Vector2i,
     new_sprite.add_to_group(sub_tag)
     new_sprite.position = ConvertCoord.get_position(coord, offset)
     new_sprite.modulate = Palette.get_color(palette, main_tag, true)
+    new_sprite.z_index = ZLayer.get_z_layer(main_tag)
 
     return TaggedSprite.new(new_sprite, main_tag, sub_tag)
