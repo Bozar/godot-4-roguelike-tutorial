@@ -31,8 +31,4 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
             return
 
     coord += ConvertCoord.get_coord(_pc)
-    _move(_pc, coord)
-
-
-func _move(pc: Sprite2D, coord: Vector2i) -> void:
-    pc.position = ConvertCoord.get_position(coord)
+    SpriteState.move_sprite(_pc, coord)

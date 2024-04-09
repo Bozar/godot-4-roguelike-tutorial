@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://drb5ql5du1mxl"]
+[gd_scene load_steps=8 format=3 uid="uid://drb5ql5du1mxl"]
 
 [ext_resource type="Script" path="res://scene/main/main_screen.gd" id="1_nhpgv"]
 [ext_resource type="Script" path="res://scene/main/sprite_root.gd" id="2_k71b2"]
 [ext_resource type="Script" path="res://scene/main/player_input.gd" id="3_d0ln7"]
 [ext_resource type="Script" path="res://scene/main/pc_action.gd" id="4_jjg8i"]
 [ext_resource type="Script" path="res://scene/main/init_world.gd" id="5_4wjyd"]
+[ext_resource type="Script" path="res://scene/main/sprite_coord.gd" id="7_4ymu5"]
+[ext_resource type="Script" path="res://scene/main/sprite_tag.gd" id="8_x038l"]
 
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_nhpgv")
@@ -20,3 +22,9 @@ script = ExtResource("4_jjg8i")
 
 [node name="InitWorld" type="Node2D" parent="."]
 script = ExtResource("5_4wjyd")
+
+[node name="SpriteCoord" type="Node2D" parent="."]
+script = ExtResource("7_4ymu5")
+
+[node name="SpriteTag" type="Node2D" parent="."]
+script = ExtResource("8_x038l")

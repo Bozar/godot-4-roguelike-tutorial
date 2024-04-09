@@ -4,8 +4,10 @@ class_name NodeReference
 const SPRITE_ROOT: String = "SpriteRoot"
 const PC_ACTION: String = "PcAction"
 const PLAYER_INPUT: String = "PlayerInput"
+const SPRITE_COORD: String = "SpriteCoord"
 
 const SPRITE_FACTORY: String = "/root/SpriteFactory"
+const SPRITE_STATE: String = "/root/SpriteState"
 
 const SIGNAL_SPRITE_CREATED: String = "sprite_created"
 const SIGNAL_ACTION_PRESSED: String = "action_pressed"
@@ -15,7 +17,7 @@ const SIGNAL_ACTION_PRESSED: String = "action_pressed"
 const SIGNAL_CONNECTIONS: Dictionary = {
     SPRITE_FACTORY: {
         SIGNAL_SPRITE_CREATED: [
-            SPRITE_ROOT, PC_ACTION,
+            SPRITE_ROOT, PC_ACTION, SPRITE_COORD,
         ],
     },
     PLAYER_INPUT: {
@@ -23,4 +25,12 @@ const SIGNAL_CONNECTIONS: Dictionary = {
             PC_ACTION,
         ],
     },
+}
+
+
+# {source_node: [target_node_1, ...], ...}
+const NODE_CONNECTIONS: Dictionary = {
+    SPRITE_COORD: [
+        SPRITE_STATE,
+    ],
 }
