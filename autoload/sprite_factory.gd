@@ -3,6 +3,7 @@ extends Node2D
 
 
 signal sprite_created(tagged_sprites: Array)
+signal sprite_removed(sprites: Array)
 
 
 func create_sprite(main_tag: StringName, sub_tag: StringName, coord: Vector2i,

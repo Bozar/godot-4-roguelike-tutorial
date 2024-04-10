@@ -10,6 +10,8 @@ const SPRITE_FACTORY: String = "/root/SpriteFactory"
 const SPRITE_STATE: String = "/root/SpriteState"
 
 const SIGNAL_SPRITE_CREATED: String = "sprite_created"
+const SIGNAL_SPRITE_REMOVED: String = "sprite_removed"
+
 const SIGNAL_ACTION_PRESSED: String = "action_pressed"
 
 
@@ -18,6 +20,9 @@ const SIGNAL_CONNECTIONS: Dictionary = {
     SPRITE_FACTORY: {
         SIGNAL_SPRITE_CREATED: [
             SPRITE_ROOT, PC_ACTION, SPRITE_COORD,
+        ],
+        SIGNAL_SPRITE_REMOVED: [
+            SPRITE_ROOT, SPRITE_COORD,
         ],
     },
     PLAYER_INPUT: {
