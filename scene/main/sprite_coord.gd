@@ -23,8 +23,14 @@ var _dungeon_sprites: Dictionary = {}
 var _indicators: Dictionary = {}
 
 
-func move_sprite(sprite: Sprite2D, coord: Vector2i) -> void:
+func move_sprite(sprite: Sprite2D, coord: Vector2i, z_layer: int) -> void:
+    var main_tag: StringName = SpriteState.get_main_tag(sprite)
+
+    _remove_sprite(sprite, main_tag)
     sprite.position = ConvertCoord.get_position(coord)
+    sprite.z_index = z_layer
+    _add_sprite(sprite, main_tag)
+
     if sprite.is_in_group(SubTag.PC):
         move_indicator(coord, _indicators)
 
@@ -51,9 +57,7 @@ func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
 
 func _on_SpriteFactory_sprite_removed(sprites: Array) -> void:
     for i: Sprite2D in sprites:
-        # TODO: Search main tag by sprite ID.
-        # _remove_sprite(i, MainTag.ACTOR)
-        pass
+        _remove_sprite(i, SpriteState.get_main_tag(i))
 
 
 # YY-XX: coord.y - coord.x

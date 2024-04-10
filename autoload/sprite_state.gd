@@ -6,8 +6,9 @@ var _ref_SpriteCoord: SpriteCoord
 var _ref_SpriteTag: SpriteTag
 
 
-func move_sprite(sprite: Sprite2D, coord: Vector2i) -> void:
-    _ref_SpriteCoord.move_sprite(sprite, coord)
+func move_sprite(sprite: Sprite2D, coord: Vector2i,
+        z_layer: int = sprite.z_index) -> void:
+    _ref_SpriteCoord.move_sprite(sprite, coord, z_layer)
 
 
 func get_main_tag(sprite: Sprite2D) -> StringName:
