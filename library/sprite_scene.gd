@@ -5,8 +5,15 @@ const SPRITE_SCENES: Dictionary = {
     # Ground
     SubTag.DUNGEON_FLOOR: preload("res://sprite/dungeon_floor.tscn"),
 
+    # Trap
+    SubTag.BULLET: preload("res://sprite/bullet.tscn"),
+
+    # Building
+    SubTag.WALL: preload("res://sprite/wall.tscn"),
+
     # Actor
     SubTag.PC: preload("res://sprite/pc.tscn"),
+    SubTag.HOUND: preload("res://sprite/hound.tscn"),
 
     # Indicator
     SubTag.INDICATOR_TOP: preload("res://sprite/indicator_top.tscn"),

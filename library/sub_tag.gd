@@ -4,9 +4,15 @@ class_name SubTag
 # Ground
 const DUNGEON_FLOOR: StringName = &"dungeon_floor"
 
+# Building
+const WALL: StringName = &"wall"
+
+# Trap
+const BULLET: StringName = &"bullet"
 
 # Actor
 const PC: StringName = &"pc"
+const HOUND: StringName = &"hound"
 
 
 # Indicator

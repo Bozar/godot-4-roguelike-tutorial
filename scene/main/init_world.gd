@@ -12,6 +12,7 @@ func create_world() -> void:
     pc_coord = _create_pc(tagged_sprites)
     _create_floor(tagged_sprites)
     _create_indicator(pc_coord, tagged_sprites)
+    _create_test_sprites(tagged_sprites)
 
     SpriteFactory.sprite_created.emit(tagged_sprites)
 
@@ -52,3 +53,19 @@ func _create_indicator(coord: Vector2i, tagged_sprites: Array) -> void:
         new_offset = indicators[i][1]
         tagged_sprites.push_back(CreateSprite.create(MainTag.INDICATOR,
                 i, new_coord, new_offset))
+
+
+func _create_test_sprites(tagged_sprites: Array) -> void:
+    var sprite_data: Array = [
+        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 4)],
+        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 5)],
+        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 6)],
+        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 7)],
+        [MainTag.BUILDING, SubTag.WALL, Vector2i(2, 2)],
+        [MainTag.ACTOR, SubTag.HOUND, Vector2i(4, 2)],
+        [MainTag.ACTOR, SubTag.HOUND, Vector2i(4, 4)],
+    ]
+
+    for i: Array in sprite_data:
+        tagged_sprites.push_back(SpriteFactory.create_sprite(i[0], i[1], i[2],
+                false))
