@@ -31,4 +31,8 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
             return
 
     coord += ConvertCoord.get_coord(_pc)
+    if not DungeonSize.is_in_dungeon(coord):
+        return
+    elif SpriteState.has_building_at_coord(coord):
+        return
     SpriteState.move_sprite(_pc, coord)

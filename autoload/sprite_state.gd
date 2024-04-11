@@ -42,3 +42,48 @@ func get_sprites_by_main_tag(main_tag: StringName) -> Array:
 
 func get_sprites_by_sub_tag(sub_tag: StringName) -> Array:
     return _ref_SpriteTag.get_sprites_by_tag("", sub_tag)
+
+
+func get_ground_by_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.GROUND)) -> Sprite2D:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.GROUND, coord, z_layer)
+
+
+func get_trap_by_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.TRAP)) -> Sprite2D:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.TRAP, coord, z_layer)
+
+
+func get_building_by_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.BUILDING)) -> Sprite2D:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.BUILDING, coord,
+            z_layer)
+
+
+func get_actor_by_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.ACTOR)) -> Sprite2D:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.ACTOR, coord, z_layer)
+
+
+func has_ground_at_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.GROUND)) -> bool:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.GROUND, coord,
+            z_layer) != null
+
+
+func has_trap_at_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.TRAP)) -> bool:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.TRAP, coord, z_layer) \
+            != null
+
+
+func has_building_at_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.BUILDING)) -> bool:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.BUILDING, coord,
+            z_layer) != null
+
+
+func has_actor_at_coord(coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(MainTag.ACTOR)) -> bool:
+    return _ref_SpriteCoord.get_sprite_by_coord(MainTag.ACTOR, coord, z_layer) \
+            != null
