@@ -2,6 +2,12 @@ class_name PcAction
 extends Node2D
 
 
+enum {
+    NORMAL_MODE,
+    AIM_MODE,
+}
+
+
 var ammo: int:
     get:
         return _ammo
@@ -9,6 +15,7 @@ var ammo: int:
 
 var _pc: Sprite2D
 var _ammo: int = GameData.MAGAZINE
+var _game_mode: int = NORMAL_MODE
 
 
 func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
@@ -25,6 +32,9 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
     var coord: Vector2i
 
     match input_tag:
+        InputTag.AIM:
+            _game_mode = _aim(_pc, _ammo, _game_mode)
+            return
         InputTag.MOVE_LEFT:
             coord = Vector2i.LEFT
         InputTag.MOVE_RIGHT:
@@ -56,3 +66,15 @@ func _pick_ammo(pc: Sprite2D, coord: Vector2i, current_ammo: int) -> int:
 
 func _get_valid_ammo(current_ammo: int) -> int:
     return max(min(current_ammo, GameData.MAX_AMMO), GameData.MIN_AMMO)
+
+
+func _aim(pc: Sprite2D, current_ammo: int, current_mode: int) -> int:
+    match current_mode:
+        AIM_MODE:
+            VisualEffect.switch_sprite(pc, VisualTag.DEFAULT)
+            return NORMAL_MODE
+        NORMAL_MODE:
+            if current_ammo > GameData.MIN_AMMO:
+                VisualEffect.switch_sprite(pc, VisualTag.ACTIVE)
+                return AIM_MODE
+    return NORMAL_MODE
