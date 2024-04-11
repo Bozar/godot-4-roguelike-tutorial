@@ -33,3 +33,7 @@ func create_building(sub_tag: StringName, coord: Vector2i, send_signal: bool) \
 func create_actor(sub_tag: StringName, coord: Vector2i, send_signal: bool) \
         -> TaggedSprite:
     return create_sprite(MainTag.ACTOR, sub_tag, coord, send_signal)
+
+
+func remove_sprite(sprite: Sprite2D) -> void:
+    sprite_removed.emit([sprite])

@@ -2,7 +2,13 @@ class_name PcAction
 extends Node2D
 
 
+var ammo: int:
+    get:
+        return _ammo
+
+
 var _pc: Sprite2D
+var _ammo: int = GameData.MAGAZINE
 
 
 func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
@@ -35,4 +41,18 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
         return
     elif SpriteState.has_building_at_coord(coord):
         return
+    elif SpriteState.has_trap_at_coord(coord):
+        _ammo = _pick_ammo(_pc, coord, _ammo)
+        # print(ammo)
+        return
     SpriteState.move_sprite(_pc, coord)
+
+
+func _pick_ammo(pc: Sprite2D, coord: Vector2i, current_ammo: int) -> int:
+    SpriteFactory.remove_sprite(SpriteState.get_trap_by_coord(coord))
+    SpriteState.move_sprite(pc, coord)
+    return _get_valid_ammo(current_ammo + GameData.MAGAZINE)
+
+
+func _get_valid_ammo(current_ammo: int) -> int:
+    return max(min(current_ammo, GameData.MAX_AMMO), GameData.MIN_AMMO)
