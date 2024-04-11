@@ -47,6 +47,23 @@ func move_indicator(coord: Vector2i, indicators: Dictionary) -> void:
         sprite.position[axis] = ConvertCoord.get_position(coord)[axis]
 
 
+func get_sprites_by_coord(coord: Vector2i) -> Array:
+    var hashed_coord: int = _hash_coord(coord)
+    var sprites: Dictionary = _dungeon_sprites.get(hashed_coord, {})
+
+    if sprites.is_empty():
+        return []
+    return sprites.values().filter(SpriteState.is_valid_sprite)
+
+
+func get_sprite_by_coord(main_tag: StringName, coord: Vector2i, z_layer: int) \
+        -> Sprite2D:
+    for i: Sprite2D in get_sprites_by_coord(coord):
+        if i.is_in_group(main_tag) and (i.z_index == z_layer):
+            return i
+    return null
+
+
 func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
     for i: TaggedSprite in sprites:
         if i.main_tag == MainTag.INDICATOR:

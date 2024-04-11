@@ -6,9 +6,22 @@ var _ref_SpriteCoord: SpriteCoord
 var _ref_SpriteTag: SpriteTag
 
 
+func is_valid_sprite(sprite: Sprite2D) -> bool:
+    return not sprite.is_queued_for_deletion()
+
+
 func move_sprite(sprite: Sprite2D, coord: Vector2i,
         z_layer: int = sprite.z_index) -> void:
     _ref_SpriteCoord.move_sprite(sprite, coord, z_layer)
+
+
+func get_sprites_by_coord(coord: Vector2i) -> Array:
+    return _ref_SpriteCoord.get_sprites_by_coord(coord)
+
+
+func get_sprite_by_coord(main_tag: StringName, coord: Vector2i,
+        z_layer: int = ZLayer.get_z_layer(main_tag)) -> Sprite2D:
+    return _ref_SpriteCoord.get_sprite_by_coord(main_tag, coord, z_layer)
 
 
 func get_main_tag(sprite: Sprite2D) -> StringName:
