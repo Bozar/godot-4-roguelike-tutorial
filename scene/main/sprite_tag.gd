@@ -71,6 +71,7 @@ func _remove_sprite(sprite: Sprite2D) -> void:
         push_error(NO_SUB_TAG % sprite.name)
 
 
+# args: [main_tag: StringName]
 func _has_main_tag(sprite: Sprite2D, args: Array) -> bool:
     var main_tag: StringName = args[0]
 

@@ -116,6 +116,7 @@ func _add_sprite(sprite: Sprite2D, main_tag: StringName) -> void:
     else:
         _dungeon_sprites[hashed_coord] = {}
     _dungeon_sprites[hashed_coord][hashed_sprite] = sprite
+    _set_visibility(coord)
 
 
 func _remove_sprite(sprite: Sprite2D, main_tag: StringName) -> void:
@@ -128,3 +129,20 @@ func _remove_sprite(sprite: Sprite2D, main_tag: StringName) -> void:
     if not sprites.erase(hashed_sprite):
         push_warning("Sprite not hashed: %d-%d, %s." %
                 [hashed_coord, hashed_sprite, sprite.name])
+    _set_visibility(coord)
+
+
+func _set_visibility(coord: Vector2i) -> void:
+    var sprites: Array = get_sprites_by_coord(coord)
+    var last_sprite: Sprite2D
+
+    sprites.sort_custom(_sort_by_layer)
+    last_sprite = sprites.pop_back()
+    for i: Sprite2D in sprites:
+        i.visible = false
+    if last_sprite != null:
+        last_sprite.visible = true
+
+
+func _sort_by_layer(this_sprite: Sprite2D, that_sprite: Sprite2D) -> bool:
+    return this_sprite.z_index < that_sprite.z_index
