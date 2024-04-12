@@ -6,14 +6,19 @@ const PC_ACTION: String = "PcAction"
 const PLAYER_INPUT: String = "PlayerInput"
 const SPRITE_COORD: String = "SpriteCoord"
 const SPRITE_TAG: String = "SpriteTag"
+const SCHEDULE: String = "Schedule"
 
 const SPRITE_FACTORY: String = "/root/SpriteFactory"
 const SPRITE_STATE: String = "/root/SpriteState"
+const SCHEDULE_HELPER: String = "/root/ScheduleHelper"
+
 
 const SIGNAL_SPRITE_CREATED: String = "sprite_created"
 const SIGNAL_SPRITE_REMOVED: String = "sprite_removed"
 
 const SIGNAL_ACTION_PRESSED: String = "action_pressed"
+
+const SIGNAL_TURN_STARTED: String = "turn_started"
 
 
 # {source_node: {signal_name: [target_node_1, ...]}, ...}
@@ -31,6 +36,11 @@ const SIGNAL_CONNECTIONS: Dictionary = {
             PC_ACTION,
         ],
     },
+    SCHEDULE: {
+        SIGNAL_TURN_STARTED: [
+            PLAYER_INPUT, PC_ACTION,
+        ],
+    },
 }
 
 
@@ -41,5 +51,8 @@ const NODE_CONNECTIONS: Dictionary = {
     ],
     SPRITE_TAG: [
         SPRITE_STATE,
+    ],
+    SCHEDULE: [
+        SCHEDULE_HELPER,
     ],
 }

@@ -20,6 +20,7 @@ config/icon="res://resource/hammer_wrench.png"
 
 SpriteFactory="*res://autoload/sprite_factory.gd"
 SpriteState="*res://autoload/sprite_state.gd"
+ScheduleHelper="*res://autoload/schedule_helper.gd"
 
 [display]
 

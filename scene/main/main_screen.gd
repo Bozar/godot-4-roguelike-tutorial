@@ -9,6 +9,7 @@ func _ready() -> void:
     RenderingServer.set_default_clear_color(Palette.get_color({},
             MainTag.BACKGROUND, true))
     $InitWorld.create_world()
+    $Schedule.start_next_turn()
 
 
 func _connect_signals(signal_connections: Dictionary) -> void:

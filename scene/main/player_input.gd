@@ -25,3 +25,7 @@ func _is_aim(event: InputEvent) -> bool:
         action_pressed.emit(InputTag.AIM)
         return true
     return false
+
+
+func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
+    set_process_unhandled_input(sprite.is_in_group(SubTag.PC))

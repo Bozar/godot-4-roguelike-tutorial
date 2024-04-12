@@ -28,6 +28,11 @@ func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
             return
 
 
+func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
+    if not sprite.is_in_group(SubTag.PC):
+        return
+
+
 func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
     var coord: Vector2i
 
@@ -51,6 +56,8 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
         AIM_MODE:
             _game_mode = _aim(_pc, _ammo, _game_mode)
             _ammo = _shoot(_pc, coord, _ammo)
+            if _game_mode == NORMAL_MODE:
+                _end_turn()
             return
         NORMAL_MODE:
             if not DungeonSize.is_in_dungeon(coord):
@@ -61,12 +68,15 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
             # than the trap.
             elif SpriteState.has_actor_at_coord(coord):
                 _kick_back(_pc, coord)
+                _end_turn()
                 return
             elif SpriteState.has_trap_at_coord(coord):
                 _ammo = _pick_ammo(_pc, coord, _ammo)
                 # print(ammo)
+                _end_turn()
                 return
-            SpriteState.move_sprite(_pc, coord)
+            _move(_pc, coord)
+            _end_turn()
             return
 
 
@@ -129,6 +139,10 @@ func _kick_back(pc: Sprite2D, coord: Vector2i) -> void:
         SpriteState.move_sprite(actor, target_coord)
 
 
+func _move(pc: Sprite2D, coord: Vector2i) -> void:
+    SpriteState.move_sprite(pc, coord)
+
+
 func _is_impassable(coord: Vector2i) -> bool:
     if not DungeonSize.is_in_dungeon(coord):
         return true
@@ -162,3 +176,7 @@ func _block_hit_back_ray(source_coord: Vector2i, target_coord: Vector2i,
 func _kill_hound(sprite: Sprite2D, coord: Vector2i) -> void:
     SpriteFactory.remove_sprite(sprite)
     SpriteFactory.create_trap(SubTag.BULLET, coord, true)
+
+
+func _end_turn() -> void:
+    ScheduleHelper.start_next_turn()
