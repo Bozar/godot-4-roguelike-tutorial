@@ -57,11 +57,17 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
                 return
             elif SpriteState.has_building_at_coord(coord):
                 return
+            # If there is a trap under an actor, interact with the actor rather
+            # than the trap.
+            elif SpriteState.has_actor_at_coord(coord):
+                _kick_back(_pc, coord)
+                return
             elif SpriteState.has_trap_at_coord(coord):
                 _ammo = _pick_ammo(_pc, coord, _ammo)
                 # print(ammo)
                 return
             SpriteState.move_sprite(_pc, coord)
+            return
 
 
 func _pick_ammo(pc: Sprite2D, coord: Vector2i, current_ammo: int) -> int:
@@ -103,6 +109,26 @@ func _shoot(pc: Sprite2D, coord: Vector2i, current_ammo: int) -> int:
     return _get_valid_ammo(current_ammo - 1)
 
 
+func _kick_back(pc: Sprite2D, coord: Vector2i) -> void:
+    var coords: Array
+    var target_coord: Vector2i
+    var actor: Sprite2D = SpriteState.get_actor_by_coord(coord)
+    var new_trap_coord: Vector2i
+
+    coords = CastRay.get_coords(ConvertCoord.get_coord(pc), coord,
+            _block_hit_back_ray, [])
+    coords = CastRay.trim_coords(coords, true, false)
+    target_coord = coords.back()
+
+    # If the last grid is impassable, create a trap in the second last grid. The
+    # hound is killed there by game design.
+    if _is_impassable(target_coord):
+        new_trap_coord = coords[-2]
+        _kill_hound(actor, new_trap_coord)
+    else:
+        SpriteState.move_sprite(actor, target_coord)
+
+
 func _is_impassable(coord: Vector2i) -> bool:
     if not DungeonSize.is_in_dungeon(coord):
         return true
@@ -115,6 +141,21 @@ func _is_impassable(coord: Vector2i) -> bool:
 
 func _block_shoot_ray(_source_coord: Vector2i, target_coord: Vector2i,
         _args: Array) -> bool:
+    return _is_impassable(target_coord)
+
+
+func _block_hit_back_ray(source_coord: Vector2i, target_coord: Vector2i,
+        _args: Array) -> bool:
+    var ray_length_squared: int = (source_coord - target_coord).length_squared()
+
+    if DungeonSize.is_in_dungeon(target_coord) and \
+            SpriteState.has_trap_at_coord(target_coord):
+        SpriteFactory.remove_sprite(SpriteState.get_trap_by_coord(target_coord))
+
+    if ray_length_squared == 1:
+        return false
+    elif ray_length_squared > (GameData.HIT_BACK ** 2):
+        return true
     return _is_impassable(target_coord)
 
 
