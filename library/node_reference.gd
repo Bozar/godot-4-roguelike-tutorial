@@ -7,6 +7,7 @@ const PLAYER_INPUT: String = "PlayerInput"
 const SPRITE_COORD: String = "SpriteCoord"
 const SPRITE_TAG: String = "SpriteTag"
 const SCHEDULE: String = "Schedule"
+const ACTOR_ACTION: String = "ActorAction"
 
 const SPRITE_FACTORY: String = "/root/SpriteFactory"
 const SPRITE_STATE: String = "/root/SpriteState"
@@ -25,10 +26,10 @@ const SIGNAL_TURN_STARTED: String = "turn_started"
 const SIGNAL_CONNECTIONS: Dictionary = {
     SPRITE_FACTORY: {
         SIGNAL_SPRITE_CREATED: [
-            SPRITE_ROOT, PC_ACTION, SPRITE_COORD, SPRITE_TAG,
+            SPRITE_ROOT, PC_ACTION, SPRITE_COORD, SPRITE_TAG, SCHEDULE,
         ],
         SIGNAL_SPRITE_REMOVED: [
-            SPRITE_ROOT, SPRITE_COORD, SPRITE_TAG,
+            SPRITE_ROOT, SPRITE_COORD, SPRITE_TAG, SCHEDULE,
         ],
     },
     PLAYER_INPUT: {
@@ -38,7 +39,7 @@ const SIGNAL_CONNECTIONS: Dictionary = {
     },
     SCHEDULE: {
         SIGNAL_TURN_STARTED: [
-            PLAYER_INPUT, PC_ACTION,
+            PLAYER_INPUT, PC_ACTION, ACTOR_ACTION,
         ],
     },
 }
