@@ -2,8 +2,8 @@ class_name SpriteRoot
 extends Node2D
 
 
-func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
-    for i: TaggedSprite in sprites:
+func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
+    for i: TaggedSprite in tagged_sprites:
         add_child(i.sprite)
 
 

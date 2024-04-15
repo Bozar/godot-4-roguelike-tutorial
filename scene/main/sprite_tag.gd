@@ -44,8 +44,8 @@ func get_sprites_by_tag(main_tag: StringName, sub_tag: StringName) -> Array:
     return sprites
 
 
-func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
-    for i: TaggedSprite in sprites:
+func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
+    for i: TaggedSprite in tagged_sprites:
         _add_sprite(i.sprite, i.main_tag, i.sub_tag)
 
 

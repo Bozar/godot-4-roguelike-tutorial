@@ -64,8 +64,8 @@ func get_sprite_by_coord(main_tag: StringName, coord: Vector2i, z_layer: int) \
     return null
 
 
-func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
-    for i: TaggedSprite in sprites:
+func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
+    for i: TaggedSprite in tagged_sprites:
         if i.main_tag == MainTag.INDICATOR:
             _indicators[i.sub_tag] = i.sprite
         else:

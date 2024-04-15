@@ -18,11 +18,11 @@ var _ammo: int = GameData.MAGAZINE
 var _game_mode: int = NORMAL_MODE
 
 
-func _on_SpriteFactory_sprite_created(sprites: Array) -> void:
+func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
     if _pc != null:
         return
 
-    for i: TaggedSprite in sprites:
+    for i: TaggedSprite in tagged_sprites:
         if i.sub_tag == SubTag.PC:
             _pc = i.sprite
             return
