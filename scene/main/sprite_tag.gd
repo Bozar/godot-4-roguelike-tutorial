@@ -39,7 +39,7 @@ func get_sprites_by_tag(main_tag: StringName, sub_tag: StringName) -> Array:
     else:
         sprites = get_tree().get_nodes_in_group(sub_tag)
         if main_tag != "":
-            sprites = ArrayHelper.filter(sprites, _has_main_tag, [main_tag])
+            ArrayHelper.filter(sprites, _has_main_tag, [main_tag])
     sprites = sprites.filter(SpriteState.is_valid_sprite)
     return sprites
 

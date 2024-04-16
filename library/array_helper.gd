@@ -10,7 +10,7 @@ static func swap_element(source: Array, left_idx: int, right_idx: int) -> void:
 
 # is_valid_element(element_in_source: Variant, is_valid_args: Array) -> bool
 static func filter(source: Array, is_valid_element: Callable,
-        is_valid_element_args: Array) -> Array:
+        is_valid_element_args: Array) -> void:
     var filter_index: int = 0
 
     for i: int in range(0, source.size()):
@@ -18,4 +18,4 @@ static func filter(source: Array, is_valid_element: Callable,
             swap_element(source, filter_index, i)
             filter_index += 1
     source.resize(filter_index)
-    return source
+
