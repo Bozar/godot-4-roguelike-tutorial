@@ -9,6 +9,8 @@ const SPRITE_TAG: String = "SpriteTag"
 const SCHEDULE: String = "Schedule"
 const ACTOR_ACTION: String = "ActorAction"
 
+const SIDEBAR: String = "Sidebar"
+
 const SPRITE_FACTORY: String = "/root/SpriteFactory"
 const SPRITE_STATE: String = "/root/SpriteState"
 const SCHEDULE_HELPER: String = "/root/ScheduleHelper"
@@ -39,7 +41,7 @@ const SIGNAL_CONNECTIONS: Dictionary = {
     },
     SCHEDULE: {
         SIGNAL_TURN_STARTED: [
-            PLAYER_INPUT, PC_ACTION, ACTOR_ACTION,
+            PLAYER_INPUT, PC_ACTION, ACTOR_ACTION, SIDEBAR,
         ],
     },
 }
@@ -55,5 +57,8 @@ const NODE_CONNECTIONS: Dictionary = {
     ],
     SCHEDULE: [
         SCHEDULE_HELPER,
+    ],
+    PC_ACTION: [
+        SIDEBAR,
     ],
 }
