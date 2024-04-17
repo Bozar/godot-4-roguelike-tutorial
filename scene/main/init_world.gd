@@ -4,6 +4,12 @@ extends Node2D
 
 const INDICATOR_OFFSET: int = 32
 
+const PATH_TO_PREFAB: StringName = "res://resource/dungeon_prefab/dungeon.txt"
+
+const WALL_CHAR: StringName = "#"
+const BULLET_CHAR: StringName = "?"
+const HOUND_CHAR: StringName = "G"
+
 
 func create_world() -> void:
     var tagged_sprites: Array = []
@@ -12,7 +18,7 @@ func create_world() -> void:
     pc_coord = _create_pc(tagged_sprites)
     _create_floor(tagged_sprites)
     _create_indicator(pc_coord, tagged_sprites)
-    _create_test_sprites(tagged_sprites)
+    _create_from_file(PATH_TO_PREFAB, tagged_sprites)
 
     SpriteFactory.sprite_created.emit(tagged_sprites)
 
@@ -55,17 +61,35 @@ func _create_indicator(coord: Vector2i, tagged_sprites: Array) -> void:
                 i, new_coord, new_offset))
 
 
-func _create_test_sprites(tagged_sprites: Array) -> void:
-    var sprite_data: Array = [
-        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 4)],
-        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 5)],
-        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 6)],
-        [MainTag.TRAP, SubTag.BULLET, Vector2i(2, 7)],
-        [MainTag.BUILDING, SubTag.WALL, Vector2i(2, 2)],
-        [MainTag.ACTOR, SubTag.HOUND, Vector2i(4, 2)],
-        [MainTag.ACTOR, SubTag.HOUND, Vector2i(4, 4)],
-    ]
+func _create_from_file(path_to_file: String, tagged_sprites: Array) -> void:
+    var parsed: ParsedFile = FileIo.read_as_line(path_to_file)
+    var packed_prefab: PackedPrefab
 
-    for i: Array in sprite_data:
-        tagged_sprites.push_back(SpriteFactory.create_sprite(i[0], i[1], i[2],
-                false))
+    if not parsed.parse_success:
+        return
+    elif parsed.output_line.is_empty():
+        return
+
+    packed_prefab = DungeonPrefab.get_prefab(parsed.output_line, [])
+    _create_sprite(packed_prefab, tagged_sprites)
+
+
+func _create_sprite(packed_prefab: PackedPrefab, tagged_sprites: Array) -> void:
+    for y: int in range(0, packed_prefab.max_y):
+        for x: int in range(0, packed_prefab.max_x):
+            _create_from_character(packed_prefab.prefab, Vector2i(x, y),
+                    tagged_sprites)
+
+
+func _create_from_character(prefab: Dictionary, coord: Vector2i,
+        tagged_sprites: Array) -> void:
+    match prefab[coord.x][coord.y]:
+        WALL_CHAR:
+            tagged_sprites.push_back(SpriteFactory.create_building(
+                    SubTag.WALL, coord, false))
+        HOUND_CHAR:
+            tagged_sprites.push_back(SpriteFactory.create_actor(
+                    SubTag.HOUND, coord, false))
+        BULLET_CHAR:
+            tagged_sprites.push_back(SpriteFactory.create_trap(
+                    SubTag.BULLET, coord, false))
