@@ -19,3 +19,8 @@ static func filter(source: Array, is_valid_element: Callable,
             filter_index += 1
     source.resize(filter_index)
 
+
+# handler(element_in_source: Variant, handler_args: Array) -> void
+static func map(source: Array, handler: Callable, handler_args: Array) -> void:
+    for i: int in range(0, source.size()):
+        source[i] = handler.call(source[i], handler_args)
