@@ -139,9 +139,9 @@ func _set_visibility(coord: Vector2i) -> void:
     sprites.sort_custom(_sort_by_layer)
     last_sprite = sprites.pop_back()
     for i: Sprite2D in sprites:
-        i.visible = false
+        VisualEffect.set_visibility(i, false)
     if last_sprite != null:
-        last_sprite.visible = true
+        VisualEffect.set_visibility(last_sprite, true)
 
 
 func _sort_by_layer(this_sprite: Sprite2D, that_sprite: Sprite2D) -> bool:

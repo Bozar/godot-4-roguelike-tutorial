@@ -18,6 +18,9 @@ var _ammo: int = GameData.MAGAZINE
 var _game_mode: int = NORMAL_MODE
 
 
+@onready var _ref_PcFov: PcFov = $PcFov
+
+
 func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
     if _pc != null:
         return
@@ -31,6 +34,7 @@ func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
 func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
     if not sprite.is_in_group(SubTag.PC):
         return
+    _ref_PcFov.render_fov(_pc)
 
 
 func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:

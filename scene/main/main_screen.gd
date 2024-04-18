@@ -6,8 +6,7 @@ func _ready() -> void:
     _connect_signals(NodeReference.SIGNAL_CONNECTIONS)
     _connect_nodes(NodeReference.NODE_CONNECTIONS)
 
-    RenderingServer.set_default_clear_color(Palette.get_color({},
-            MainTag.BACKGROUND, true))
+    VisualEffect.set_background_color()
     $InitWorld.create_world()
     $Sidebar.init_gui()
     $Schedule.start_next_turn()
