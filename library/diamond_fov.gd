@@ -1,8 +1,10 @@
 class_name DiamondFov
 
 
-static func get_fov_map(source: Vector2i, sight_range: int,
-        out_fov_map: Dictionary) -> void:
+# _set_fov_value(coord: Vector2i, fov_map: Dictionary, fov_flag: int,
+# is_truthy: bool) -> void
+static func get_fov_map(source: Vector2i, out_fov_map: Dictionary,
+        set_fov_value: Callable, sight_range: int) -> void:
     var column: Array
     var coord: Vector2i = Vector2i(0, 0)
 
@@ -11,4 +13,5 @@ static func get_fov_map(source: Vector2i, sight_range: int,
         for y: int in range(0, column.size()):
             coord.x = x
             coord.y = y
-            column[y] = ConvertCoord.is_in_range(source, coord, sight_range)
+            set_fov_value.call(coord, out_fov_map, PcFov.IS_IN_SIGHT_FLAG,
+                    ConvertCoord.is_in_range(source, coord, sight_range))
