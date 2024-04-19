@@ -5,21 +5,12 @@ class_name CastRay
 # is_obstacle_args: Array) -> bool
 static func get_coords(source_coord: Vector2i, target_coord: Vector2i,
         is_obstacle: Callable, is_obstacle_args: Array) -> Array:
-    var direction: Vector2i
+    var direction: Vector2i = ConvertCoord.get_direction(source_coord,
+            target_coord)
     var ray_coords: Array = []
     var this_coord: Vector2i
 
-    if source_coord.x == target_coord.x:
-        if source_coord.y > target_coord.y:
-            direction = Vector2i.UP
-        elif source_coord.y < target_coord.y:
-            direction = Vector2i.DOWN
-    elif source_coord.y == target_coord.y:
-        if source_coord.x > target_coord.x:
-            direction = Vector2i.LEFT
-        elif source_coord.x < target_coord.x:
-            direction = Vector2i.RIGHT
-    else:
+    if direction == Vector2i.ZERO:
         push_error("Invalid coords: %s, %s" % [source_coord, target_coord])
         return ray_coords
 

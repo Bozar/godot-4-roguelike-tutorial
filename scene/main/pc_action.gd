@@ -34,7 +34,7 @@ func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
 func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
     if not sprite.is_in_group(SubTag.PC):
         return
-    _ref_PcFov.render_fov(_pc)
+    _ref_PcFov.render_fov(_pc, _game_mode)
 
 
 func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
@@ -43,6 +43,7 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
     match input_tag:
         InputTag.AIM:
             _game_mode = _aim(_pc, _ammo, _game_mode)
+            _ref_PcFov.render_fov(_pc, _game_mode)
             return
         InputTag.MOVE_LEFT:
             coord = Vector2i.LEFT

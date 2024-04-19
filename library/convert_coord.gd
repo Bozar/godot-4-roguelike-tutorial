@@ -27,3 +27,17 @@ static func get_range(this_coord: Vector2i, that_coord: Vector2i) -> int:
 static func is_in_range(this_coord: Vector2i, that_coord: Vector2i,
         max_range: int) -> bool:
     return get_range(this_coord, that_coord) <= max_range
+
+
+static func get_direction(from_coord: Vector2i, to_coord: Vector2i) -> Vector2i:
+    if from_coord.x == to_coord.x:
+        if to_coord.y < from_coord.y:
+            return Vector2i.UP
+        elif to_coord.y > from_coord.y:
+            return Vector2i.DOWN
+    elif from_coord.y == to_coord.y:
+        if to_coord.x > from_coord.x:
+            return Vector2i.RIGHT
+        elif to_coord.x < from_coord.x:
+            return Vector2i.LEFT
+    return Vector2i.ZERO
