@@ -17,6 +17,7 @@ const IS_IN_MEMORY_FLAG: int = 0b10
 
 var _fov_map: Dictionary
 var _cross_fov_data: CrossFov.FovData
+var _shadow_cast_fov_data: ShadowCastFov.FovData
 
 
 func _ready() -> void:
@@ -28,6 +29,7 @@ func _ready() -> void:
         GameData.PC_AIM_RANGE,
         GameData.PC_AIM_RANGE,
     )
+    _shadow_cast_fov_data = ShadowCastFov.FovData.new(GameData.PC_SIGHT_RANGE)
 
 
 func render_fov(pc: Sprite2D, game_mode: int) -> void:
@@ -41,8 +43,10 @@ func render_fov(pc: Sprite2D, game_mode: int) -> void:
         CrossFov.get_fov_map(pc_coord, _fov_map, _set_fov_value,
                 _block_cross_fov_ray, [_cross_fov_data], _cross_fov_data)
     else:
-        DiamondFov.get_fov_map(pc_coord, _fov_map, _set_fov_value,
-                GameData.PC_SIGHT_RANGE)
+        # DiamondFov.get_fov_map(pc_coord, _fov_map, _set_fov_value,
+        #         GameData.PC_SIGHT_RANGE)
+        ShadowCastFov.get_fov_map(pc_coord, _fov_map, _set_fov_value,
+                _block_shadow_cast_fov_ray, [], _shadow_cast_fov_data)
 
     for x: int in range(0, DungeonSize.MAX_X):
         for y: int in range(DungeonSize.MAX_Y):
@@ -159,3 +163,8 @@ func _is_obstacle(coord: Vector2i) -> bool:
         return SpriteState.has_building_at_coord(coord) \
                 or SpriteState.has_actor_at_coord(coord)
     return true
+
+
+func _block_shadow_cast_fov_ray(_from_coord: Vector2i, to_coord: Vector2i,
+        _args: Array) -> bool:
+    return _is_obstacle(to_coord)
