@@ -29,9 +29,10 @@ const SIGNAL_CONNECTIONS: Dictionary = {
     SPRITE_FACTORY: {
         SIGNAL_SPRITE_CREATED: [
             SPRITE_ROOT, PC_ACTION, SPRITE_COORD, SPRITE_TAG, SCHEDULE,
+            ACTOR_ACTION,
         ],
         SIGNAL_SPRITE_REMOVED: [
-            SPRITE_ROOT, SPRITE_COORD, SPRITE_TAG, SCHEDULE,
+            SPRITE_ROOT, SPRITE_COORD, SPRITE_TAG, SCHEDULE, ACTOR_ACTION,
         ],
     },
     PLAYER_INPUT: {
@@ -60,5 +61,8 @@ const NODE_CONNECTIONS: Dictionary = {
     ],
     PC_ACTION: [
         SIDEBAR,
+    ],
+    ACTOR_ACTION: [
+        PC_ACTION,
     ],
 }

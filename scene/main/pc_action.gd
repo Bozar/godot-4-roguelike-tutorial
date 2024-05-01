@@ -13,12 +13,14 @@ var ammo: int:
         return _ammo
 
 
+var _ref_ActorAction: ActorAction
+
+@onready var _ref_PcFov: PcFov = $PcFov
+
+
 var _pc: Sprite2D
 var _ammo: int = GameData.MAGAZINE
 var _game_mode: int = NORMAL_MODE
-
-
-@onready var _ref_PcFov: PcFov = $PcFov
 
 
 func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
@@ -142,6 +144,7 @@ func _kick_back(pc: Sprite2D, coord: Vector2i) -> void:
         _kill_hound(actor, new_trap_coord)
     else:
         SpriteState.move_sprite(actor, target_coord)
+        _ref_ActorAction.hit_actor(actor)
 
 
 func _move(pc: Sprite2D, coord: Vector2i) -> void:
