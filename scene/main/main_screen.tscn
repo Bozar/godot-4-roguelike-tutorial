@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://drb5ql5du1mxl"]
+[gd_scene load_steps=13 format=3 uid="uid://drb5ql5du1mxl"]
 
 [ext_resource type="Script" path="res://scene/main/main_screen.gd" id="1_nhpgv"]
 [ext_resource type="Script" path="res://scene/main/sprite_root.gd" id="2_k71b2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scene/main/sprite_tag.gd" id="8_x038l"]
 [ext_resource type="Script" path="res://scene/main/actor_action.gd" id="9_psynh"]
 [ext_resource type="PackedScene" uid="uid://dphslwd58ka2w" path="res://scene/sidebar/sidebar.tscn" id="10_do70e"]
+[ext_resource type="Script" path="res://scene/main/random_number.gd" id="12_ymw0w"]
 
 [node name="MainScreen" type="Node2D"]
 script = ExtResource("1_nhpgv")
@@ -43,3 +44,6 @@ script = ExtResource("8_q6781")
 script = ExtResource("9_psynh")
 
 [node name="Sidebar" parent="." instance=ExtResource("10_do70e")]
+
+[node name="RandomNumber" type="Node2D" parent="."]
+script = ExtResource("12_ymw0w")
