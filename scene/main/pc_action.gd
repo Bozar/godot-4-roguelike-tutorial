@@ -13,6 +13,16 @@ var ammo: int:
         return _ammo
 
 
+var alert_duration: int:
+    get:
+        return _alert_duration
+
+
+var alert_coord: Vector2i:
+    get:
+        return _alert_coord
+
+
 var _ref_ActorAction: ActorAction
 
 @onready var _ref_PcFov: PcFov = $PcFov
@@ -21,6 +31,8 @@ var _ref_ActorAction: ActorAction
 var _pc: Sprite2D
 var _ammo: int = GameData.MAGAZINE
 var _game_mode: int = NORMAL_MODE
+var _alert_duration: int = 0
+var _alert_coord: Vector2i
 
 
 func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
@@ -37,6 +49,7 @@ func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
     if not sprite.is_in_group(SubTag.PC):
         return
     _ref_PcFov.render_fov(_pc, _game_mode)
+    _alert_duration = max(0, _alert_duration - 1)
 
 
 func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
@@ -64,6 +77,7 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
             _game_mode = _aim(_pc, _ammo, _game_mode)
             _ammo = _shoot(_pc, coord, _ammo)
             if _game_mode == NORMAL_MODE:
+                _alert_hound(_pc)
                 _end_turn()
             return
         NORMAL_MODE:
@@ -188,3 +202,8 @@ func _kill_hound(sprite: Sprite2D, coord: Vector2i) -> void:
 
 func _end_turn() -> void:
     ScheduleHelper.start_next_turn()
+
+
+func _alert_hound(pc: Sprite2D) -> void:
+    _alert_duration = GameData.MAX_ALERT_DURATION
+    _alert_coord = ConvertCoord.get_coord(pc)

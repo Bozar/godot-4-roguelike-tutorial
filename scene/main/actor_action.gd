@@ -2,8 +2,13 @@ class_name ActorAction
 extends Node2D
 
 
+var _ref_RandomNumber: RandomNumber
+var _ref_PcAction: PcAction
+
+
 var _pc: Sprite2D
 var _actor_states: Dictionary = {}
+var _map_2d: Dictionary = Map2D.init_map(DijkstraPathfinding.UNKNOWN)
 
 
 func hit_actor(sprite: Sprite2D) -> void:
@@ -34,6 +39,11 @@ func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
     distanct_to_pc = ConvertCoord.get_range(actor_coord, pc_coord)
     if distanct_to_pc == 1:
         _hit_pc()
+    elif distanct_to_pc <= GameData.NPC_SIGHT_RANGE:
+        _approach_pc(_map_2d, sprite, [pc_coord])
+    elif _ref_PcAction.alert_duration > 0:
+        _approach_pc(_map_2d, sprite, [_ref_PcAction.alert_coord])
+
     ScheduleHelper.start_next_turn()
 
 
@@ -80,3 +90,33 @@ func _get_actor_state(sprite: Sprite2D) -> ActorState:
 func _is_npc(sprite: Sprite2D) -> bool:
     return sprite.is_in_group(MainTag.ACTOR) and \
             (not sprite.is_in_group(SubTag.PC))
+
+
+func _approach_pc(map_2d: Dictionary, sprite: Sprite2D, end_point: Array) \
+        -> void:
+    var npc_coord: Vector2i = ConvertCoord.get_coord(sprite)
+    var target_coords: Array
+    var move_to: Vector2i
+    var trap: Sprite2D
+
+    DijkstraPathfinding.set_obstacle_map(map_2d, _is_obstacle, [])
+    DijkstraPathfinding.set_destination(map_2d, end_point)
+    DijkstraPathfinding.set_distance_map(map_2d, end_point)
+
+    target_coords = DijkstraPathfinding.get_coords(map_2d, npc_coord, 1)
+    if target_coords.is_empty():
+        return
+
+    if target_coords.size() > 1:
+        ArrayHelper.shuffle(target_coords, _ref_RandomNumber)
+    move_to = target_coords[0]
+    SpriteState.move_sprite(sprite, move_to)
+
+    trap = SpriteState.get_trap_by_coord(move_to)
+    if trap != null:
+        SpriteFactory.remove_sprite(trap)
+
+
+func _is_obstacle(coord: Vector2i, _opt_args: Array) -> bool:
+    return SpriteState.has_building_at_coord(coord) or \
+            SpriteState.has_actor_at_coord(coord)

@@ -24,3 +24,12 @@ static func filter(source: Array, is_valid_element: Callable,
 static func map(source: Array, handler: Callable, handler_args: Array) -> void:
     for i: int in range(0, source.size()):
         source[i] = handler.call(source[i], handler_args)
+
+
+static func shuffle(source: Array, rand: RandomNumber) -> void:
+    var max_index: int = source.size()
+    var rand_index: int
+
+    for i: int in range(0, max_index):
+        rand_index = rand.get_int(i, max_index)
+        swap_element(source, i, rand_index)

@@ -8,6 +8,7 @@ const SPRITE_COORD: String = "SpriteCoord"
 const SPRITE_TAG: String = "SpriteTag"
 const SCHEDULE: String = "Schedule"
 const ACTOR_ACTION: String = "ActorAction"
+const RANDOM_NUMBER: String = "RandomNumber"
 
 const SIDEBAR: String = "Sidebar"
 
@@ -60,9 +61,12 @@ const NODE_CONNECTIONS: Dictionary = {
         SCHEDULE_HELPER,
     ],
     PC_ACTION: [
-        SIDEBAR,
+        SIDEBAR, ACTOR_ACTION,
     ],
     ACTOR_ACTION: [
         PC_ACTION,
+    ],
+    RANDOM_NUMBER: [
+        ACTOR_ACTION,
     ],
 }
