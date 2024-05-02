@@ -41,3 +41,27 @@ static func get_direction(from_coord: Vector2i, to_coord: Vector2i) -> Vector2i:
         elif to_coord.x < from_coord.x:
             return Vector2i.LEFT
     return Vector2i.ZERO
+
+
+static func get_diamond_coords(center: Vector2i, max_range: int) -> Array:
+    var coords: Array[Vector2i] = []
+    var coord: Vector2i
+    var mirror: Vector2i
+
+    for x: int in range(0, max_range + 1):
+        for y: int in range(0, max_range + 1 - x):
+            coord = Vector2i(x + center.x, y + center.y)
+            coords.push_back(coord)
+            if x != 0:
+                mirror = Vector2i(center.x, center.y + y)
+                coords.push_back(get_mirror_coord(coord, mirror))
+            if y != 0:
+                mirror = Vector2i(center.x + x, center.y)
+                coords.push_back(get_mirror_coord(coord, mirror))
+            if (x != 0) and (y != 0):
+                coords.push_back(get_mirror_coord(coord, center))
+    return coords
+
+
+static func get_mirror_coord(coord: Vector2i, mirror: Vector2i) -> Vector2i:
+    return Vector2i(mirror.x * 2 - coord.x, mirror.y * 2 - coord.y)
