@@ -21,6 +21,7 @@ config/icon="res://resource/hammer_wrench.png"
 SpriteFactory="*res://autoload/sprite_factory.gd"
 SpriteState="*res://autoload/sprite_state.gd"
 ScheduleHelper="*res://autoload/schedule_helper.gd"
+EndGame="*res://autoload/end_game.gd"
 
 [display]
 
@@ -67,6 +68,11 @@ move_down={
 aim={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":32,"echo":false,"script":null)
+]
+}
+restart_game={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":79,"physical_keycode":0,"key_label":0,"unicode":111,"echo":false,"script":null)
 ]
 }
 

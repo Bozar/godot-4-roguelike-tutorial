@@ -8,6 +8,8 @@ const MOVE_DOWN: StringName = &"move_down"
 
 const AIM: StringName = &"aim"
 
+const RESTART_GAME: StringName = &"restart_game"
+
 
 const MOVE_ACTIONS: Array[StringName] = [
     MOVE_LEFT,

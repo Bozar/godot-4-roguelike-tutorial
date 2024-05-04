@@ -10,6 +10,8 @@ func _unhandled_input(event: InputEvent) -> void:
         return
     elif _is_aim(event):
         return
+    elif _is_restart_game(event):
+        return
 
 
 func _is_move_actions(event: InputEvent) -> bool:
@@ -23,6 +25,13 @@ func _is_move_actions(event: InputEvent) -> bool:
 func _is_aim(event: InputEvent) -> bool:
     if event.is_action_pressed(InputTag.AIM):
         action_pressed.emit(InputTag.AIM)
+        return true
+    return false
+
+
+func _is_restart_game(event: InputEvent) -> bool:
+    if event.is_action_pressed(InputTag.RESTART_GAME):
+        EndGame.reload()
         return true
     return false
 
