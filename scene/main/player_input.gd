@@ -6,7 +6,11 @@ signal action_pressed(input_tag: InputTag)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-    if _is_move_actions(event):
+    if _is_quit_game(event):
+        return
+    elif _is_copy_seed(event):
+        return
+    elif _is_move_actions(event):
         return
     elif _is_aim(event):
         return
@@ -43,6 +47,20 @@ func _is_replay_game(event: InputEvent) -> bool:
     if event.is_action_pressed(InputTag.REPLAY_GAME):
         action_pressed.emit(InputTag.REPLAY_GAME)
         EndGame.reload()
+        return true
+    return false
+
+
+func _is_quit_game(event: InputEvent) -> bool:
+    if event.is_action_pressed(InputTag.QUIT_GAME):
+        EndGame.quit()
+        return true
+    return false
+
+
+func _is_copy_seed(event: InputEvent) -> bool:
+    if event.is_action_pressed(InputTag.COPY_SEED):
+        action_pressed.emit(InputTag.COPY_SEED)
         return true
     return false
 
