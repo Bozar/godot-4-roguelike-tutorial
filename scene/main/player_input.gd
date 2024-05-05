@@ -12,6 +12,8 @@ func _unhandled_input(event: InputEvent) -> void:
         return
     elif _is_restart_game(event):
         return
+    elif _is_replay_game(event):
+        return
 
 
 func _is_move_actions(event: InputEvent) -> bool:
@@ -31,6 +33,15 @@ func _is_aim(event: InputEvent) -> bool:
 
 func _is_restart_game(event: InputEvent) -> bool:
     if event.is_action_pressed(InputTag.RESTART_GAME):
+        action_pressed.emit(InputTag.RESTART_GAME)
+        EndGame.reload()
+        return true
+    return false
+
+
+func _is_replay_game(event: InputEvent) -> bool:
+    if event.is_action_pressed(InputTag.REPLAY_GAME):
+        action_pressed.emit(InputTag.REPLAY_GAME)
         EndGame.reload()
         return true
     return false

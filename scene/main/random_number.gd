@@ -25,3 +25,13 @@ func set_initial_seed(input_seed: int) -> void:
         new_seed = _rng.randi()
     _rng.seed = new_seed
     print("Seed: %d" % new_seed)
+
+
+func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
+    match input_tag:
+        # InputTag.COPY_SEED:
+        #     DisplayServer.clipboard_set(str(get_seed()))
+        InputTag.REPLAY_GAME:
+            TransferData.set_rng_seed(get_seed())
+        InputTag.RESTART_GAME:
+            TransferData.set_rng_seed(0)

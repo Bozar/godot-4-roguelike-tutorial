@@ -38,7 +38,7 @@ const SIGNAL_CONNECTIONS: Dictionary = {
     },
     PLAYER_INPUT: {
         SIGNAL_ACTION_PRESSED: [
-            PC_ACTION,
+            PC_ACTION, RANDOM_NUMBER,
         ],
     },
     SCHEDULE: {

@@ -7,7 +7,7 @@ func _ready() -> void:
     _connect_nodes(NodeReference.NODE_CONNECTIONS)
 
     VisualEffect.set_background_color()
-    $RandomNumber.set_initial_seed(0)
+    $RandomNumber.set_initial_seed(TransferData.rng_seed)
     $InitWorld.create_world()
     $Sidebar.init_gui()
     $Schedule.start_next_turn()
