@@ -4,6 +4,7 @@ extends Node2D
 
 var _ref_RandomNumber: RandomNumber
 var _ref_PcAction: PcAction
+var _ref_GameProgress: GameProgress
 
 
 var _pc: Sprite2D
@@ -72,7 +73,7 @@ func _on_SpriteFactory_sprite_removed(sprites: Array) -> void:
 
 
 func _hit_pc() -> void:
-    print("hit")
+    _ref_GameProgress.game_over.emit(false)
 
 
 func _get_actor_state(sprite: Sprite2D) -> ActorState:

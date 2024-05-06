@@ -45,6 +45,10 @@ func _on_SpriteFactory_sprite_removed(sprites: Array) -> void:
         LinkedList.remove_object(i, _schedule)
 
 
+func _on_GameProgress_game_over(_player_win: bool) -> void:
+    _game_over = true
+
+
 func _point_to_next_sprite() -> Sprite2D:
     if _is_first_turn:
         _current_sprite = LinkedList.get_previous_object(_pc, _schedule)

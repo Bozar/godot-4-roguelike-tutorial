@@ -35,3 +35,5 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
             TransferData.set_rng_seed(get_seed())
         InputTag.RESTART_GAME:
             TransferData.set_rng_seed(0)
+        InputTag.START_NEW_GAME:
+            TransferData.set_rng_seed(0)

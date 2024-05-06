@@ -101,6 +101,12 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
             return
 
 
+func _on_GameProgress_game_over(player_win: bool) -> void:
+    _ref_PcFov.render_fov(_pc, _game_mode)
+    if not player_win:
+        VisualEffect.set_dark_color(_pc)
+
+
 func _pick_ammo(pc: Sprite2D, coord: Vector2i, current_ammo: int) -> int:
     SpriteFactory.remove_sprite(SpriteState.get_trap_by_coord(coord))
     SpriteState.move_sprite(pc, coord)

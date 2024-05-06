@@ -8,6 +8,7 @@ const MOVE_DOWN: StringName = &"move_down"
 
 const AIM: StringName = &"aim"
 
+const START_NEW_GAME: StringName = &"start_new_game"
 const RESTART_GAME: StringName = &"restart_game"
 const REPLAY_GAME: StringName = &"replay_game"
 const QUIT_GAME: StringName = &"quit_game"

@@ -9,6 +9,7 @@ const SPRITE_TAG: String = "SpriteTag"
 const SCHEDULE: String = "Schedule"
 const ACTOR_ACTION: String = "ActorAction"
 const RANDOM_NUMBER: String = "RandomNumber"
+const GAME_PROGRESS: String = "GameProgress"
 
 const SIDEBAR: String = "Sidebar"
 
@@ -23,6 +24,8 @@ const SIGNAL_SPRITE_REMOVED: String = "sprite_removed"
 const SIGNAL_ACTION_PRESSED: String = "action_pressed"
 
 const SIGNAL_TURN_STARTED: String = "turn_started"
+
+const SIGNAL_GAME_OVER: String = "game_over"
 
 
 # {source_node: {signal_name: [target_node_1, ...]}, ...}
@@ -46,6 +49,12 @@ const SIGNAL_CONNECTIONS: Dictionary = {
             PLAYER_INPUT, PC_ACTION, ACTOR_ACTION, SIDEBAR,
         ],
     },
+    GAME_PROGRESS: {
+        SIGNAL_GAME_OVER: [
+            SCHEDULE, PC_ACTION, PLAYER_INPUT,
+        ],
+    },
+
 }
 
 
@@ -67,6 +76,9 @@ const NODE_CONNECTIONS: Dictionary = {
         PC_ACTION,
     ],
     RANDOM_NUMBER: [
+        ACTOR_ACTION,
+    ],
+    GAME_PROGRESS: [
         ACTOR_ACTION,
     ],
 }
