@@ -76,7 +76,7 @@ const NODE_CONNECTIONS: Dictionary = {
         PC_ACTION,
     ],
     RANDOM_NUMBER: [
-        ACTOR_ACTION, SIDEBAR,
+        ACTOR_ACTION, SIDEBAR, GAME_PROGRESS,
     ],
     GAME_PROGRESS: [
         ACTOR_ACTION, PC_ACTION,

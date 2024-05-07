@@ -17,6 +17,9 @@ const MAX_ENEMY_COUNT: int = 9
 const MIN_PROGRESS_BAR: int = 0
 const MAX_PROGRES_BAR: int = 3
 
+const MAX_SPAWN_DURATION: int = 3
+const MIN_DISTANCE_TO_PC: int = 7
+
 const HIT_DAMAGE: int = 2
 const NPC_SIGHT_RANGE: int = 10
 const MAX_ALERT_DURATION: int = 2

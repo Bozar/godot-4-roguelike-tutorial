@@ -61,6 +61,7 @@ func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
 func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
     if not sprite.is_in_group(SubTag.PC):
         return
+    _ref_GameProgress.try_spawn_npc(_pc)
     _ref_PcFov.render_fov(_pc, _game_mode)
     _alert_duration = max(0, _alert_duration - 1)
     # print("%d, %d" % [enemy_count, progress_bar])
