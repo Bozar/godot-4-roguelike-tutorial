@@ -31,3 +31,7 @@ func _on_GameProgress_game_over(player_win: bool) -> void:
     _ref_StateLabel.game_over = true
     _ref_StateLabel.player_win = player_win
     _ref_StateLabel.update_gui()
+
+
+func _on_PcAction_ui_force_updated() -> void:
+    _ref_StateLabel.update_gui()

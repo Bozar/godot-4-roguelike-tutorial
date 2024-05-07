@@ -2,6 +2,9 @@ class_name PcAction
 extends Node2D
 
 
+signal ui_force_updated()
+
+
 enum {
     NORMAL_MODE,
     AIM_MODE,
@@ -71,6 +74,14 @@ func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
     var coord: Vector2i
 
     match input_tag:
+        InputTag.ADD_AMMO:
+            _ammo = _get_valid_ammo(_ammo + 1)
+            ui_force_updated.emit()
+            return
+        InputTag.ADD_HIT:
+            _add_enemy_count()
+            ui_force_updated.emit()
+            return
         InputTag.AIM:
             _game_mode = _aim(_pc, _ammo, _game_mode)
             _ref_PcFov.render_fov(_pc, _game_mode)

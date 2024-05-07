@@ -13,7 +13,10 @@ func init_gui() -> void:
 
 
 func _get_version() -> String:
-    return "1.0.0"
+    var wizard: String = "+" if TransferData.wizard_mode else ""
+    var version: String = "1.0.0"
+
+    return "%s%s" % [wizard, version]
 
 
 func _get_help() -> String:

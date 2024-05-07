@@ -14,6 +14,9 @@ const REPLAY_GAME: StringName = &"replay_game"
 const QUIT_GAME: StringName = &"quit_game"
 const COPY_SEED: StringName = &"copy_seed"
 
+const ADD_AMMO: StringName = &"add_ammo"
+const ADD_HIT: StringName = &"add_hit"
+
 
 const MOVE_ACTIONS: Array[StringName] = [
     MOVE_LEFT,

@@ -32,6 +32,11 @@ func _unhandled_input(event: InputEvent) -> void:
             return
         elif _is_aim(event):
             return
+        elif TransferData.wizard_mode:
+            if _is_add_ammo(event):
+                return
+            elif _is_add_hit(event):
+                return
     elif _input_flags & GAME_OVER_FLAG:
         if _is_start_new_game(event):
             return
@@ -96,5 +101,19 @@ func _is_quit_game(event: InputEvent) -> bool:
 func _is_copy_seed(event: InputEvent) -> bool:
     if event.is_action_pressed(InputTag.COPY_SEED):
         action_pressed.emit(InputTag.COPY_SEED)
+        return true
+    return false
+
+
+func _is_add_ammo(event: InputEvent) -> bool:
+    if event.is_action_pressed(InputTag.ADD_AMMO):
+        action_pressed.emit(InputTag.ADD_AMMO)
+        return true
+    return false
+
+
+func _is_add_hit(event: InputEvent) -> bool:
+    if event.is_action_pressed(InputTag.ADD_HIT):
+        action_pressed.emit(InputTag.ADD_HIT)
         return true
     return false
