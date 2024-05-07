@@ -10,6 +10,7 @@ const SCHEDULE: String = "Schedule"
 const ACTOR_ACTION: String = "ActorAction"
 const RANDOM_NUMBER: String = "RandomNumber"
 const GAME_PROGRESS: String = "GameProgress"
+const INIT_WORLD: String = "InitWorld"
 
 const SIDEBAR: String = "Sidebar"
 
@@ -76,7 +77,7 @@ const NODE_CONNECTIONS: Dictionary = {
         PC_ACTION,
     ],
     RANDOM_NUMBER: [
-        ACTOR_ACTION, SIDEBAR, GAME_PROGRESS,
+        ACTOR_ACTION, SIDEBAR, GAME_PROGRESS, INIT_WORLD,
     ],
     GAME_PROGRESS: [
         ACTOR_ACTION, PC_ACTION,
