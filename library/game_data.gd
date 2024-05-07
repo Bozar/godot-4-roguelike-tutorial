@@ -11,6 +11,12 @@ const PC_SIGHT_RANGE: int = 5
 const PC_AIM_RANGE: int = 7
 const CROSS_FOV_WIDTH: int = 0
 
+const MIN_ENEMY_COUNT: int = 0
+const MAX_ENEMY_COUNT: int = 9
+
+const MIN_PROGRESS_BAR: int = 0
+const MAX_PROGRES_BAR: int = 3
+
 const HIT_DAMAGE: int = 2
 const NPC_SIGHT_RANGE: int = 10
 const MAX_ALERT_DURATION: int = 2

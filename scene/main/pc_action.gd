@@ -23,7 +23,18 @@ var alert_coord: Vector2i:
         return _alert_coord
 
 
+var enemy_count: int:
+    get:
+        return _enemy_count
+
+
+var progress_bar: int:
+    get:
+        return _progress_bar
+
+
 var _ref_ActorAction: ActorAction
+var _ref_GameProgress: GameProgress
 
 @onready var _ref_PcFov: PcFov = $PcFov
 
@@ -33,6 +44,8 @@ var _ammo: int = GameData.MAGAZINE
 var _game_mode: int = NORMAL_MODE
 var _alert_duration: int = 0
 var _alert_coord: Vector2i
+var _enemy_count: int = GameData.MIN_ENEMY_COUNT
+var _progress_bar: int = GameData.MIN_PROGRESS_BAR
 
 
 func _on_SpriteFactory_sprite_created(tagged_sprites: Array) -> void:
@@ -50,6 +63,7 @@ func _on_Schedule_turn_started(sprite: Sprite2D) -> void:
         return
     _ref_PcFov.render_fov(_pc, _game_mode)
     _alert_duration = max(0, _alert_duration - 1)
+    # print("%d, %d" % [enemy_count, progress_bar])
 
 
 func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
@@ -202,14 +216,33 @@ func _block_hit_back_ray(source_coord: Vector2i, target_coord: Vector2i,
 
 
 func _kill_hound(sprite: Sprite2D, coord: Vector2i) -> void:
+    _add_enemy_count()
     SpriteFactory.remove_sprite(sprite)
     SpriteFactory.create_trap(SubTag.BULLET, coord, true)
 
 
 func _end_turn() -> void:
-    ScheduleHelper.start_next_turn()
+    _subtract_progress_bar()
+    if _enemy_count >= GameData.MAX_ENEMY_COUNT:
+        _ref_GameProgress.game_over.emit(true)
+    else:
+        ScheduleHelper.start_next_turn()
 
 
 func _alert_hound(pc: Sprite2D) -> void:
     _alert_duration = GameData.MAX_ALERT_DURATION
     _alert_coord = ConvertCoord.get_coord(pc)
+
+
+func _add_enemy_count() -> void:
+    _enemy_count = min(enemy_count + 1, GameData.MAX_ENEMY_COUNT)
+    _progress_bar = GameData.MAX_PROGRES_BAR + 1
+
+
+func _subtract_progress_bar() -> void:
+    if _progress_bar > GameData.MIN_PROGRESS_BAR:
+        _progress_bar -= 1
+    if _progress_bar == GameData.MIN_PROGRESS_BAR:
+        _enemy_count = max(enemy_count - 1, GameData.MIN_ENEMY_COUNT)
+        if _enemy_count > GameData.MIN_ENEMY_COUNT:
+            _progress_bar = GameData.MAX_PROGRES_BAR

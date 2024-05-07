@@ -79,6 +79,6 @@ const NODE_CONNECTIONS: Dictionary = {
         ACTOR_ACTION,
     ],
     GAME_PROGRESS: [
-        ACTOR_ACTION,
+        ACTOR_ACTION, PC_ACTION,
     ],
 }
