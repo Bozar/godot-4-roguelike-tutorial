@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dphslwd58ka2w"]
 
 [ext_resource type="Script" path="res://scene/sidebar/sidebar.gd" id="1_2y8cc"]
-[ext_resource type="Script" path="res://scene/sidebar/status_label.gd" id="2_xbw51"]
+[ext_resource type="Script" path="res://scene/sidebar/state_label.gd" id="2_xbw51"]
 [ext_resource type="Script" path="res://scene/sidebar/footnote_label.gd" id="3_qm0je"]
 
 [node name="Sidebar" type="MarginContainer"]
@@ -16,7 +16,7 @@ script = ExtResource("1_2y8cc")
 [node name="SidebarVBox" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="StatusLabel" type="Label" parent="SidebarVBox"]
+[node name="StateLabel" type="Label" parent="SidebarVBox"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_xbw51")

@@ -51,7 +51,7 @@ const SIGNAL_CONNECTIONS: Dictionary = {
     },
     GAME_PROGRESS: {
         SIGNAL_GAME_OVER: [
-            SCHEDULE, PC_ACTION, PLAYER_INPUT,
+            SCHEDULE, PC_ACTION, PLAYER_INPUT, SIDEBAR,
         ],
     },
 
@@ -76,7 +76,7 @@ const NODE_CONNECTIONS: Dictionary = {
         PC_ACTION,
     ],
     RANDOM_NUMBER: [
-        ACTOR_ACTION,
+        ACTOR_ACTION, SIDEBAR,
     ],
     GAME_PROGRESS: [
         ACTOR_ACTION, PC_ACTION,
