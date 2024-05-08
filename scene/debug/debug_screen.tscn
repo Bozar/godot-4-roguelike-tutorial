@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgblbv4xseynh"]
+
+[ext_resource type="Script" path="res://scene/debug/debug_screen.gd" id="1_270ty"]
+[ext_resource type="Script" path="res://scene/debug/title_label.gd" id="2_ieykp"]
+[ext_resource type="Script" path="res://scene/debug/seed_label.gd" id="3_7cmqw"]
+[ext_resource type="Script" path="res://scene/debug/seed_line_edit.gd" id="4_xyvab"]
+[ext_resource type="Script" path="res://scene/debug/wizard_label.gd" id="5_2cxkq"]
+[ext_resource type="Script" path="res://scene/debug/wizard_line_edit.gd" id="6_f8jql"]
+[ext_resource type="Script" path="res://scene/debug/map_label.gd" id="7_up38i"]
+[ext_resource type="Script" path="res://scene/debug/map_line_edit.gd" id="8_53nnq"]
+
+[node name="DebugScreen" type="MarginContainer"]
+offset_right = 78.0
+offset_bottom = 176.0
+script = ExtResource("1_270ty")
+
+[node name="DebugVBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="DebugVBox"]
+layout_mode = 2
+script = ExtResource("2_ieykp")
+
+[node name="SettingGrid" type="GridContainer" parent="DebugVBox"]
+layout_mode = 2
+
+[node name="SeedLabel" type="Label" parent="DebugVBox/SettingGrid"]
+layout_mode = 2
+script = ExtResource("3_7cmqw")
+
+[node name="SeedLineEdit" type="LineEdit" parent="DebugVBox/SettingGrid"]
+layout_mode = 2
+script = ExtResource("4_xyvab")
+
+[node name="WizardLabel" type="Label" parent="DebugVBox/SettingGrid"]
+layout_mode = 2
+script = ExtResource("5_2cxkq")
+
+[node name="WizardLineEdit" type="LineEdit" parent="DebugVBox/SettingGrid"]
+layout_mode = 2
+script = ExtResource("6_f8jql")
+
+[node name="MapLabel" type="Label" parent="DebugVBox/SettingGrid"]
+layout_mode = 2
+script = ExtResource("7_up38i")
+
+[node name="MapLineEdit" type="LineEdit" parent="DebugVBox/SettingGrid"]
+layout_mode = 2
+script = ExtResource("8_53nnq")

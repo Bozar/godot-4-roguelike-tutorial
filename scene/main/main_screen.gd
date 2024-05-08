@@ -11,6 +11,7 @@ func _ready() -> void:
     $InitWorld.create_world()
     $Sidebar.init_gui()
     $HelpScreen.init_gui()
+    $DebugScreen.init_gui()
     $Schedule.start_next_turn()
 
 

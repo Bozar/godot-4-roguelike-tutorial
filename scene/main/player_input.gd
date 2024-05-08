@@ -29,12 +29,17 @@ func _unhandled_input(event: InputEvent) -> void:
             return
         elif _is_open_help_menu(event, _input_flags):
             return
+        elif _is_open_debug_menu(event, _input_flags):
+            return
     elif _input_flags & HELP_FLAG:
         if _is_close_menu(event, _previous_input_flags):
             return
         elif _is_switch_screen_inputs(event):
             return
         elif _is_scroll_page_inputs(event):
+            return
+    elif _input_flags & DEBUG_FLAG:
+        if _is_close_menu(event, _previous_input_flags):
             return
 
     if _input_flags & GAMEPLAY_FLAG:
@@ -134,6 +139,15 @@ func _is_open_help_menu(event: InputEvent, previous_input_flags: int) -> bool:
         action_pressed.emit(InputTag.OPEN_HELP_MENU)
         _previous_input_flags = previous_input_flags
         _input_flags = HELP_FLAG
+        return true
+    return false
+
+
+func _is_open_debug_menu(event: InputEvent, previous_input_flags: int) -> bool:
+    if event.is_action_pressed(InputTag.OPEN_DEBUG_MENU):
+        action_pressed.emit(InputTag.OPEN_DEBUG_MENU)
+        _previous_input_flags = previous_input_flags
+        _input_flags = DEBUG_FLAG
         return true
     return false
 

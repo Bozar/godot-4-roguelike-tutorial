@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func render_fov(pc: Sprite2D, game_mode: int) -> void:
-    if NO_FOV:
+    if NO_FOV or TransferData.show_full_map:
         return
 
     var pc_coord: Vector2i = ConvertCoord.get_coord(pc)
