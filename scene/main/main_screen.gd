@@ -6,6 +6,10 @@ func _ready() -> void:
     _connect_signals(NodeReference.SIGNAL_CONNECTIONS)
     _connect_nodes(NodeReference.NODE_CONNECTIONS)
 
+    if TransferData.load_setting_file:
+        SettingFile.load()
+        TransferData.set_load_setting_file(false)
+
     VisualEffect.set_background_color()
     $RandomNumber.set_initial_seed(TransferData.rng_seed)
     $InitWorld.create_world()

@@ -21,8 +21,7 @@ func init_gui() -> void:
 
 
 func _set_font() -> void:
-    var palette: Dictionary = {}
-    # var palette: Dictionary = TransferData.palette
+    var palette: Dictionary = TransferData.palette
     var color_name: String
     var is_light_color: bool
 

@@ -5,8 +5,7 @@ static func create(main_tag: StringName, sub_tag: StringName, coord: Vector2i,
         offset: Vector2i = Vector2i(0, 0)) -> TaggedSprite:
     var packed_sprite: PackedScene = SpriteScene.get_sprite_scene(sub_tag)
     var new_sprite: Sprite2D
-    # TODO: Load user palette data.
-    var palette: Dictionary = {}
+    var palette: Dictionary = TransferData.palette
 
     if packed_sprite == null:
         return null

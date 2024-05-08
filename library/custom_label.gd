@@ -14,7 +14,7 @@ func update_gui() -> void:
 
 
 func _set_font(is_light_color: bool) -> void:
-    var palette: Dictionary = {}
+    var palette: Dictionary = TransferData.palette
 
     add_theme_font_override("font", _font)
     add_theme_font_size_override("font_size", 24)

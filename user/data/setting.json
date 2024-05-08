@@ -1,0 +1,23 @@
+{
+    "rng_seed": 0,
+    "wizard_mode": false,
+    "show_full_map": false,
+    "palette": {
+    },
+    "default_palette": {
+        "background": ["#212529", "#212529"],
+        "gui_text": ["#ADB5BD", "#6C757D"],
+        "ground": ["#6C757D", "#343A40"],
+        "trap": ["#F8B945", "#854E19"],
+        "building": ["#6C757D", "#343A40"],
+        "actor": ["#52B788", "#2D6A4F"],
+        "indicator": ["#6C757D", "#6C757D"]
+    },
+    "blue_palette": {
+        "actor": ["56add8", "0e628c"]
+    },
+    "grey_palette": {
+        "trap": ["#6C757D", "#343A40"],
+        "actor": ["#ADB5BD", "#6C757D"]
+    }
+}

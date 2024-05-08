@@ -17,9 +17,21 @@ var show_full_map: bool:
         return _show_full_map
 
 
+var load_setting_file: bool:
+    get:
+        return _load_setting_file
+
+
+var palette: Dictionary:
+    get:
+        return _palette
+
+
 var _rng_seed: int = 0
 var _wizard_mode: bool = false
 var _show_full_map: bool = false
+var _load_setting_file: bool = true
+var _palette: Dictionary = {}
 
 
 func set_rng_seed(value: int) -> void:
@@ -32,3 +44,11 @@ func set_wizard_mode(value: bool) -> void:
 
 func set_show_full_map(value: bool) -> void:
     _show_full_map = value
+
+
+func set_load_setting_file(value: bool) -> void:
+    _load_setting_file = value
+
+
+func set_palette(value: Dictionary) -> void:
+    _palette = value
