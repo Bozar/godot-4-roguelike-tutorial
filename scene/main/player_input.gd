@@ -14,6 +14,7 @@ const HELP_FLAG: int = 0b100_00
 
 
 var _input_flags: int = 0b000_11
+var _previous_input_flags: int = _input_flags
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,6 +26,15 @@ func _unhandled_input(event: InputEvent) -> void:
         elif _is_restart_game(event):
             return
         elif _is_replay_game(event):
+            return
+        elif _is_open_help_menu(event, _input_flags):
+            return
+    elif _input_flags & HELP_FLAG:
+        if _is_close_menu(event, _previous_input_flags):
+            return
+        elif _is_switch_screen_inputs(event):
+            return
+        elif _is_scroll_page_inputs(event):
             return
 
     if _input_flags & GAMEPLAY_FLAG:
@@ -116,4 +126,37 @@ func _is_add_hit(event: InputEvent) -> bool:
     if event.is_action_pressed(InputTag.ADD_HIT):
         action_pressed.emit(InputTag.ADD_HIT)
         return true
+    return false
+
+
+func _is_open_help_menu(event: InputEvent, previous_input_flags: int) -> bool:
+    if event.is_action_pressed(InputTag.OPEN_HELP_MENU):
+        action_pressed.emit(InputTag.OPEN_HELP_MENU)
+        _previous_input_flags = previous_input_flags
+        _input_flags = HELP_FLAG
+        return true
+    return false
+
+
+func _is_close_menu(event: InputEvent, previous_input_flags: int) -> bool:
+    if event.is_action_pressed(InputTag.CLOSE_MENU):
+        action_pressed.emit(InputTag.CLOSE_MENU)
+        _input_flags = previous_input_flags
+        return true
+    return false
+
+
+func _is_switch_screen_inputs(event: InputEvent) -> bool:
+    for i: StringName in InputTag.SWITCH_SCREEN_INPUTS:
+        if event.is_action_pressed(i):
+            action_pressed.emit(i)
+            return true
+    return false
+
+
+func _is_scroll_page_inputs(event: InputEvent) -> bool:
+    for i: StringName in InputTag.SCROLL_PAGE_INPUTS:
+        if event.is_action_pressed(i):
+            action_pressed.emit(i)
+            return true
     return false

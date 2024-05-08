@@ -35,3 +35,13 @@ func _on_GameProgress_game_over(player_win: bool) -> void:
 
 func _on_PcAction_ui_force_updated() -> void:
     _ref_StateLabel.update_gui()
+
+
+func _on_PlayerInput_action_pressed(input_tag: StringName) -> void:
+    match input_tag:
+        InputTag.CLOSE_MENU:
+            visible = true
+        InputTag.OPEN_DEBUG_MENU:
+            visible = false
+        InputTag.OPEN_HELP_MENU:
+            visible = false

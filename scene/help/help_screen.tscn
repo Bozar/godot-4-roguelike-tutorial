@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj58gs1r0ay2d"]
+
+[ext_resource type="Script" path="res://scene/help/help_screen.gd" id="1_kejrk"]
+[ext_resource type="Script" path="res://scene/help/keybinding_label.gd" id="2_vcs6n"]
+[ext_resource type="Script" path="res://scene/help/introduction_label.gd" id="3_gqp33"]
+[ext_resource type="Script" path="res://scene/help/gameplay_label.gd" id="4_a24j5"]
+
+[node name="HelpScreen" type="MarginContainer"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_kejrk")
+
+[node name="KeybindingScroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="KeybindingLabel" type="Label" parent="KeybindingScroll"]
+layout_mode = 2
+script = ExtResource("2_vcs6n")
+
+[node name="IntroductionScroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="IntroductionLabel" type="Label" parent="IntroductionScroll"]
+layout_mode = 2
+script = ExtResource("3_gqp33")
+
+[node name="GameplayScroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="GameplayLabel" type="Label" parent="GameplayScroll"]
+layout_mode = 2
+script = ExtResource("4_a24j5")

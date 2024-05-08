@@ -14,6 +14,8 @@ const INIT_WORLD: String = "InitWorld"
 
 const SIDEBAR: String = "Sidebar"
 
+const HELP_SCREEN: String = "HelpScreen"
+
 const SPRITE_FACTORY: String = "/root/SpriteFactory"
 const SPRITE_STATE: String = "/root/SpriteState"
 const SCHEDULE_HELPER: String = "/root/ScheduleHelper"
@@ -44,7 +46,7 @@ const SIGNAL_CONNECTIONS: Dictionary = {
     },
     PLAYER_INPUT: {
         SIGNAL_ACTION_PRESSED: [
-            PC_ACTION, RANDOM_NUMBER,
+            PC_ACTION, RANDOM_NUMBER, SIDEBAR, SPRITE_ROOT, HELP_SCREEN,
         ],
     },
     SCHEDULE: {

@@ -10,6 +10,7 @@ func _ready() -> void:
     $RandomNumber.set_initial_seed(TransferData.rng_seed)
     $InitWorld.create_world()
     $Sidebar.init_gui()
+    $HelpScreen.init_gui()
     $Schedule.start_next_turn()
 
 
