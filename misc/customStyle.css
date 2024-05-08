@@ -1,0 +1,10 @@
+body {
+    background-color: #212529;
+}
+
+#canvas {
+    display: inline;
+    border-width: 2px;
+    border-color: #6C757D;
+    border-style: dashed;
+}
